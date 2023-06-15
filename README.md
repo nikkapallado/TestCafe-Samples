@@ -1,2 +1,2 @@
-# TestCafe-Samples
-Sample automation scripts written using TestCafe framework
+# TestCafe-TestCafeExample
+Automation scripts for TestCafe Example Page written using TestCafe framework
