@@ -1,0 +1,22 @@
+{
+  "name": "testcafeexample",
+  "version": "1.0.0",
+  "description": "TestCafe automation script for test cafe example website",
+  "main": "getting-started.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikkapallado/TestCafe-TestCafeExample.git"
+  },
+  "author": "niks.pallado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikkapallado/TestCafe-TestCafeExample/issues"
+  },
+  "homepage": "https://github.com/nikkapallado/TestCafe-TestCafeExample#readme",
+  "devDependencies": {
+    "testcafe": "^2.6.2"
+  }
+}
