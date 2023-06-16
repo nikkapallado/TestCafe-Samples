@@ -7,6 +7,8 @@ const developer_name = Selector('#developer-name');
 const os_option = Selector('#windows');
 const submit_button = Selector('#submit-button');
 const header = Selector('h1');
+const dropdown = Selector('select#preferred-interface');
+const options = dropdown.find('option');
 
 fixture('First fixture')
     .meta('version', '1.0.0')
@@ -33,9 +35,18 @@ test.page(`${conf.base_url}/example/`)
             .click(submit_button);
     });
 
-test.only
+test
     ('Navigate to example page', async test_controller => {
         await test_controller
             .navigateTo(`${conf.base_url}/example/`)
             .expect(header.textContent).eql('Example')
+    });
+
+test.only
+    .page(`${conf.base_url}/example/`)
+    ('Select Javascript API as interface', async test_controller => {
+        await test_controller
+            .click(dropdown)
+            .click(options.withText('JavaScript API'))
+            .expect(dropdown.value).eql('JavaScript API');
     });
