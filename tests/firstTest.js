@@ -15,14 +15,22 @@ const populateButton = Selector('input#populate');
 
 fixture('First fixture')
     .meta('version', '1.0.0')
+    .beforeEach(async test_controller => {
+        await test_controller
+            .maximizeWindow()
+            .setTestSpeed(0.5)
+            .setPageLoadTimeout(0)
+    })
     .page(conf.base_url);
 
-test.meta('env', 'production')
+test.only.meta('env', 'production')
     .page(`${conf.base_url}/example/`)
     ('First test', async test_controller => {
         await test_controller
             .setTestSpeed(0.1)
+            .expect(developer_name.value).eql('','Developer name is not empty')
             .typeText(developer_name, example_page_data.first_test.dev_name)
+            .expect(developer_name.value).eql(example_page_data.first_test.dev_name, `The developer name is not ${example_page_data.first_test.dev_name}`)
             .click(os_option)
             .click(submit_button);
         // home_page = new home_page_object(test_controller);
@@ -51,20 +59,18 @@ test.page(`${conf.base_url}/example/`)
         await test_controller
             .click(dropdown)
             .click(options.withText('JavaScript API'))
-            .expect(dropdown.value).eql('JavaScript API');
+            .expect(dropdown.value).eql('JavaScript API', 'Dropdown does not contain JavaScript API');
     });
 
 test.page(`${conf.base_url}/example/`)
     ('Test Drag', async test_controller => {
         await test_controller
-            .setTestSpeed(0.5)
             .click(triedTestCafeCheckbox)
             .dragToElement(slider, Selector('div.slider-value').withText('2'));
     })
 
-test.only.page(`${conf.base_url}/example/`)
+test.page(`${conf.base_url}/example/`)
     ('Test Hover', async test_controller => {
         await test_controller
-            .setTestSpeed(0.5)
             .hover(populateButton);
     })
