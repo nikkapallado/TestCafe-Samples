@@ -6,6 +6,7 @@ import { Selector } from 'testcafe';
 const developer_name = Selector('#developer-name');
 const os_option = Selector('#windows');
 const submit_button = Selector('#submit-button');
+const header = Selector('h1');
 
 fixture('First fixture')
     .meta('version', '1.0.0')
@@ -36,5 +37,5 @@ test.only
     ('Navigate to example page', async test_controller => {
         await test_controller
             .navigateTo(`${conf.base_url}/example/`)
-            .expect(Selector('h1').textContent).eql('Example')
+            .expect(header.textContent).eql('Example')
     });
