@@ -11,6 +11,7 @@ const dropdown = Selector('select#preferred-interface');
 const options = dropdown.find('option');
 const triedTestCafeCheckbox = Selector('input#tried-test-cafe');
 const slider = Selector('div#slider');
+const populateButton = Selector('input#populate');
 
 fixture('First fixture')
     .meta('version', '1.0.0')
@@ -53,10 +54,17 @@ test.page(`${conf.base_url}/example/`)
             .expect(dropdown.value).eql('JavaScript API');
     });
 
-test.only.page(`${conf.base_url}/example/`)
+test.page(`${conf.base_url}/example/`)
     ('Test Drag', async test_controller => {
         await test_controller
             .setTestSpeed(0.5)
             .click(triedTestCafeCheckbox)
-            .dragToElement(slider, Selector('div.slider-value').withText('2'))
+            .dragToElement(slider, Selector('div.slider-value').withText('2'));
+    })
+
+test.only.page(`${conf.base_url}/example/`)
+    ('Test Hover', async test_controller => {
+        await test_controller
+            .setTestSpeed(0.5)
+            .hover(populateButton);
     })
