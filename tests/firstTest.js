@@ -18,6 +18,7 @@ test.meta('env', 'production')
     .page(`${conf.base_url}/example/`)
     ('First test', async test_controller => {
         await test_controller
+            .setTestSpeed(0.1)
             .typeText(developer_name, example_page_data.first_test.dev_name)
             .click(os_option)
             .click(submit_button);
@@ -30,19 +31,20 @@ test.meta('env', 'production')
 test.page(`${conf.base_url}/example/`)
     ('Second test', async test_controller => {
         await test_controller
-            .typeText(developer_name, 'Bett Lafea')
+            .typeText(developer_name, 'Betty Lafea')
             .click(os_option)
             .click(submit_button);
     });
 
-test
+test.only
+    .timeouts({pageLoadTimeout:    2000,})
     ('Navigate to example page', async test_controller => {
         await test_controller
             .navigateTo(`${conf.base_url}/example/`)
             .expect(header.textContent).eql('Example')
     });
 
-test.only
+test
     .page(`${conf.base_url}/example/`)
     ('Select Javascript API as interface', async test_controller => {
         await test_controller
