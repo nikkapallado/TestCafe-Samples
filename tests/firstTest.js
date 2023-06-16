@@ -9,6 +9,8 @@ const submit_button = Selector('#submit-button');
 const header = Selector('h1');
 const dropdown = Selector('select#preferred-interface');
 const options = dropdown.find('option');
+const triedTestCafeCheckbox = Selector('input#tried-test-cafe');
+const slider = Selector('div#slider');
 
 fixture('First fixture')
     .meta('version', '1.0.0')
@@ -36,19 +38,25 @@ test.page(`${conf.base_url}/example/`)
             .click(submit_button);
     });
 
-test.only
-    .timeouts({pageLoadTimeout:    2000,})
+test.timeouts({ pageLoadTimeout: 2000, })
     ('Navigate to example page', async test_controller => {
         await test_controller
             .navigateTo(`${conf.base_url}/example/`)
             .expect(header.textContent).eql('Example')
     });
 
-test
-    .page(`${conf.base_url}/example/`)
+test.page(`${conf.base_url}/example/`)
     ('Select Javascript API as interface', async test_controller => {
         await test_controller
             .click(dropdown)
             .click(options.withText('JavaScript API'))
             .expect(dropdown.value).eql('JavaScript API');
     });
+
+test.only.page(`${conf.base_url}/example/`)
+    ('Test Drag', async test_controller => {
+        await test_controller
+            .setTestSpeed(0.5)
+            .click(triedTestCafeCheckbox)
+            .dragToElement(slider, Selector('div.slider-value').withText('2'))
+    })
