@@ -35,7 +35,9 @@ test.meta('env', 'production')
             .typeText(developer_name, example_page_data.first_test.dev_name)
             .expect(developer_name.value).eql(example_page_data.first_test.dev_name, `The developer name is not ${example_page_data.first_test.dev_name}`)
             .click(os_option)
+            .takeScreenshot()
             .click(submit_button)
+            .takeScreenshot()
             .expect(getPageURL()).contains('/thank-you.html');
         // home_page = new home_page_object(test_controller);
         // home_page.enterDevName(home_page_data.first_test.dev_name);
@@ -48,6 +50,7 @@ test.page(`${conf.base_url}/example/`)
         await test_controller
             .typeText(developer_name, 'Betty Lafea')
             .click(os_option)
+            .takeElementScreenshot(submit_button)
             .click(submit_button)
             .expect(getPageURL()).contains('/thank-you.html');
     });
@@ -56,6 +59,7 @@ test.timeouts({ pageLoadTimeout: 2000, })
     ('Navigate to example page', async test_controller => {
         await test_controller
             .navigateTo(`${conf.base_url}/example/`)
+            .takeScreenshot()
             .expect(getPageURL()).contains(`${conf.base_url}/example/`)
             .expect(header.textContent).eql('Example');
     });
