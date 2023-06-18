@@ -3,7 +3,7 @@ const example_page_data = require("../test-data/examplePageData.json");
 // const {home_page_object} = require("../page-objects/homePageObject.js");
 import { Selector, ClientFunction } from 'testcafe';
 
-const developer_name = Selector('#developer-namesss');
+const developer_name = Selector('#developer-name');
 const os_option = Selector('#windows');
 const submit_button = Selector('#submit-button');
 const header = Selector('h1');

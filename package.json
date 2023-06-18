@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nikkapallado/TestCafe-TestCafeExample#readme",
   "devDependencies": {
+    "@ffmpeg/ffmpeg": "^0.11.6",
     "testcafe": "^2.6.2"
   }
 }
