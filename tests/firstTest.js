@@ -28,9 +28,10 @@ fixture('First fixture')
 test.meta('env', 'production')
     .page(`${conf.base_url}/example/`)
     ('First test', async test_controller => {
+        const element = await developer_name.with({visibilityCheck:true})();
         await test_controller
             .setTestSpeed(0.1)
-            .expect(developer_name.value).eql('', 'Developer name is not empty')
+            .expect(element.value).eql('', 'Developer name is not empty')
             .typeText(developer_name, example_page_data.first_test.dev_name)
             .expect(developer_name.value).eql(example_page_data.first_test.dev_name, `The developer name is not ${example_page_data.first_test.dev_name}`)
             .click(os_option)
