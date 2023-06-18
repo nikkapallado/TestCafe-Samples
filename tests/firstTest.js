@@ -3,7 +3,7 @@ const example_page_data = require("../test-data/examplePageData.json");
 // const {home_page_object} = require("../page-objects/homePageObject.js");
 import { Selector, ClientFunction } from 'testcafe';
 
-const developer_name = Selector('#developer-name');
+const developer_name = Selector('#developer-namesss');
 const os_option = Selector('#windows');
 const submit_button = Selector('#submit-button');
 const header = Selector('h1');
@@ -35,9 +35,7 @@ test.meta('env', 'production')
             .typeText(developer_name, example_page_data.first_test.dev_name)
             .expect(developer_name.value).eql(example_page_data.first_test.dev_name, `The developer name is not ${example_page_data.first_test.dev_name}`)
             .click(os_option)
-            .takeScreenshot()
             .click(submit_button)
-            .takeScreenshot()
             .expect(getPageURL()).contains('/thank-you.html');
         // home_page = new home_page_object(test_controller);
         // home_page.enterDevName(home_page_data.first_test.dev_name);
@@ -50,7 +48,6 @@ test.page(`${conf.base_url}/example/`)
         await test_controller
             .typeText(developer_name, 'Betty Lafea')
             .click(os_option)
-            .takeElementScreenshot(submit_button)
             .click(submit_button)
             .expect(getPageURL()).contains('/thank-you.html');
     });
@@ -59,7 +56,6 @@ test.timeouts({ pageLoadTimeout: 2000, })
     ('Navigate to example page', async test_controller => {
         await test_controller
             .navigateTo(`${conf.base_url}/example/`)
-            .takeScreenshot()
             .expect(getPageURL()).contains(`${conf.base_url}/example/`)
             .expect(header.textContent).eql('Example');
     });
