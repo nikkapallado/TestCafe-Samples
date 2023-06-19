@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+'use strict';
+
+require('../lib/cli');
 const conf = require("../config/conf.json");
 const example_page_data = require("../test-data/examplePageData.json");
 // const {home_page_object} = require("../page-objects/homePageObject.js");
